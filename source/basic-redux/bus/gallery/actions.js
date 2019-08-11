@@ -11,7 +11,8 @@ export const showSelectedPhoto = (photoIndex) => {
         type: SHOW_SELECTED_PHOTO,
         payload: photoIndex,
     }
-}
+};
+
 export const showPrevPhoto = () => {
     return {
         type: SHOW_PREV_PHOTO

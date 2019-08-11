@@ -27,6 +27,7 @@ export const galleryReducer = ( state = initialState, action ) => {
                 ...state,
                 selectedPhotoIndex: state.selectedPhotoIndex + 1,
             };
+
         case SHOW_SELECTED_PHOTO:
             return {
                 ...state,
