@@ -1,5 +1,5 @@
 // Types
-import { FETCH_POSTS_ASYNC, FILL_POSTS, CREATE_POST_ASYNC, UPDATE_POSTS } from './types';
+import { FETCH_POSTS_ASYNC, FILL_POSTS, CREATE_POST_ASYNC, CREATE_POSTS } from './types';
 
 // Instruments
 import { api } from '../../REST';
@@ -11,9 +11,9 @@ export const fillPosts = ( posts ) => {
     }
 };
 
-export const updatePosts = ( posts ) => {
+export const createPosts = ( posts ) => {
     return {
-        type: UPDATE_POSTS,
+        type: CREATE_POSTS,
         payload: posts,
     }
 };
@@ -37,5 +37,5 @@ export const createPostAsync = ( comment ) => async ( dispatch ) => {
     const responce = await api.create.fetch( comment );
     const result = await responce.json();
 
-    dispatch(updatePosts(result.data));
+    dispatch(createPosts(result.data));
 };
