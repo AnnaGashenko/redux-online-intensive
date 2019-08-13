@@ -10,11 +10,8 @@ export const api = {
                     'x-no-auth': groupId,
                 },
             });
-        }
-    },
-
-    create: {
-        fetch (comment) {
+        },
+        create (comment) {
             return fetch(`${MAIN_URL}/feed`, {
                 method: 'POST',
                 headers: {
