@@ -2,6 +2,9 @@
 import { MAIN_URL, groupId, token } from './config';
 
 export const api = {
+    get token() {
+        return localStorage.getItem('token');
+    },
     auth: {
         signup (userInfo) {
             return fetch(`${MAIN_URL}/user/${groupId}`, {
@@ -21,6 +24,15 @@ export const api = {
                 body: JSON.stringify(userInfo)
             });
         },
+        authenticate () {
+            return fetch(`${MAIN_URL}/user/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ token: this.token }),
+            });
+        }
     },
     posts: {
         fetch () {
