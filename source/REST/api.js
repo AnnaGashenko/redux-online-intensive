@@ -58,7 +58,7 @@ export const api = {
                     Authorization: this.token,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ comment })
+                body: JSON.stringify({comment})
             });
         },
 
@@ -71,6 +71,5 @@ export const api = {
                 }
             });
         },
-
     }
 };
