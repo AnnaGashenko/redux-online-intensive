@@ -7,9 +7,16 @@ export const authActions = {
             type: types.AUTHENTICATE,
         }
     },
+
     initialize: () => {
         return {
             type: types.INITIALIZE,
+        }
+    },
+
+    logout: () => {
+        return {
+            type: types.LOGOUT,
         }
     },
 
@@ -36,6 +43,12 @@ export const authActions = {
     initializeAsync: () => {
         return {
             type: types.INITIALIZE_ASYNC
+        }
+    },
+
+    logoutAsync: () => {
+        return {
+            type: types.LOGOUT_ASYNC
         }
     },
 

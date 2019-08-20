@@ -5,6 +5,7 @@ import { types } from './types';
 import { api } from '../../REST';
 
 export const postActions = {
+    // Sync
     fillPosts :( posts ) => {
         return {
             type: types.FILL_POSTS,
@@ -19,6 +20,13 @@ export const postActions = {
         }
     },
 
+    clearPost : (  ) => {
+        return {
+            type: types.CLEAR_POST
+        }
+    },
+
+    // Async
     fetchPostsAsync : () => {
         return {
             type: types.FETCH_POSTS_ASYNC,
