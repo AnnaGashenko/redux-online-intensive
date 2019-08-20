@@ -1,5 +1,6 @@
 // Core
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 
 // Instruments
@@ -7,6 +8,24 @@ import Styles from './styles.m.css';
 
 // Components
 import { Like } from '../../components';
+
+// Actions
+import { postActions } from '../../bus/posts/actions';
+
+const mapStateToProps = (state) => {
+    return {
+        isFetching: state.ui.get('isFetching'),
+    };
+};
+
+const mapDispatchToProps = {
+    removePostAsync: postActions.removePostAsync,
+};
+
+@connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
 
 export default class Post extends Component {
     _getCross = () => {
@@ -20,7 +39,7 @@ export default class Post extends Component {
     _removePost = () => {
         const { actions, id } = this.props;
 
-        actions.removePostAsync(id);
+        this.props.removePostAsync(id);
     };
 
     render () {

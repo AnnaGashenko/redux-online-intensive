@@ -6,7 +6,7 @@ export const api = {
         return localStorage.getItem('token');
     },
     auth: {
-        signup (userInfo) {
+        signup ( userInfo ) {
             return fetch(`${MAIN_URL}/user/${groupId}`, {
                 method: 'POST',
                 headers: {
@@ -15,13 +15,13 @@ export const api = {
                 body: JSON.stringify(userInfo)
             });
         },
-        login (userInfo) {
+        login ( credentials ) {
             return fetch(`${MAIN_URL}/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(userInfo)
+                body: JSON.stringify( credentials )
             });
         },
         authenticate () {
@@ -60,6 +60,17 @@ export const api = {
                 },
                 body: JSON.stringify({ comment })
             });
-        }
+        },
+
+        remove (postId) {
+            return fetch(`${MAIN_URL}/feed/${postId}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: this.token,
+                    'Content-Type': 'application/json',
+                }
+            });
+        },
+
     }
 };
