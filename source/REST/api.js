@@ -15,6 +15,7 @@ export const api = {
                 body: JSON.stringify(userInfo)
             });
         },
+
         login ( credentials ) {
             return fetch(`${MAIN_URL}/user/login`, {
                 method: 'POST',
@@ -24,6 +25,7 @@ export const api = {
                 body: JSON.stringify( credentials )
             });
         },
+
         authenticate () {
             return fetch(`${MAIN_URL}/user/login`, {
                 method: 'POST',
@@ -33,6 +35,7 @@ export const api = {
                 body: JSON.stringify({ token: this.token }),
             });
         },
+
         logout () {
             return fetch(`${MAIN_URL}/user/logout`, {
                 method: 'GET',
@@ -51,6 +54,7 @@ export const api = {
                 },
             });
         },
+
         create (comment) {
             return fetch(`${MAIN_URL}/feed`, {
                 method: 'POST',
@@ -65,6 +69,26 @@ export const api = {
         remove (id) {
             return fetch(`${MAIN_URL}/feed/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    Authorization: this.token,
+                    'Content-Type': 'application/json',
+                }
+            });
+        },
+
+        like (postId) {
+            return fetch(`${MAIN_URL}/feed/like/${postId}`, {
+                method: 'PUT',
+                headers: {
+                    Authorization: this.token,
+                    'Content-Type': 'application/json',
+                }
+            });
+        },
+
+        unlike (postId) {
+            return fetch(`${MAIN_URL}/feed/like/${postId}`, {
+                method: 'PUT',
                 headers: {
                     Authorization: this.token,
                     'Content-Type': 'application/json',
