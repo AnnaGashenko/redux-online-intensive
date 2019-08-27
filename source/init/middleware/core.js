@@ -31,6 +31,6 @@ if (__DEV__) {
     middleware.push(logger);
 }
 
-const enhancedStore = composeEnhancers(applyMiddleware(...middleware));
+const enhancedStore = compose(applyMiddleware(...middleware));
 
 export { enhancedStore, sagaMiddleware, history };

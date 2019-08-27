@@ -15,7 +15,11 @@ import Public from './Public';
 import { Loading } from '../components';
 
 // Actions
-import { authActions } from '../bus/auth/actions'
+import { authActions } from '../bus/auth/actions';
+import { socketActions } from '../bus/socket/actions';
+
+//WebSocket
+import { socket, joinSocketChannel } from '../init/socket';
 
 const mapStateToProps = (state) => {
     return {
@@ -25,7 +29,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    isInitializeAsync: authActions.initializeAsync
+    isInitializeAsync: authActions.initializeAsync,
+    ...socketActions
 };
 
 @hot(module)
@@ -34,15 +39,23 @@ const mapDispatchToProps = {
 
 export default class App extends Component {
     componentDidMount() {
-        this.props.isInitializeAsync();
+        const { isInitializeAsync, listenConnection } = this.props;
+        isInitializeAsync();
+        listenConnection();
+        joinSocketChannel();
+    }
+
+    componentWillUnmount () {
+        socket.removeListener('connect');
+        socket.removeListener('disconnect');
     }
 
     render () {
-        const {isAuthenticated, isInitialize} = this.props;
+        const {isAuthenticated, isInitialize, listenPosts} = this.props;
 
         if(!isInitialize) {
             return <Loading />;
         }
-        return isAuthenticated ? <Private /> : <Public />;
+        return isAuthenticated ? <Private listenPosts = { listenPosts } /> : <Public />;
     }
 }
