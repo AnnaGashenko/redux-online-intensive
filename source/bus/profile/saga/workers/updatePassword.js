@@ -21,7 +21,6 @@ export function* updatePassword ({ payload: {
             throw new Error(message);
         }
 
-        yield put(profileActions.fillProfile(updateProfile));
     } catch (error) {
         yield put(uiActions.emitError(error, '-> updateName worker'));
     } finally {
