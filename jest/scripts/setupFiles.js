@@ -21,6 +21,21 @@ const credentials = {
     remember: true,
 };
 
+const users = [
+    {
+        avatar: "https://lab.lectrum.io/redux/api/image/4luucyyhwlwd/f1Idia4mIe.jpeg",
+        firstName: "Dima",
+        id: "5d56838a949e6060e781d82d",
+        lastName: "Golubenko",
+    },
+    {
+        avatar: "https://lab.lectrum.io/redux/api/image/4luucyyhwlwd/placeholder.jpg",
+        firstName: "John",
+        id: "5d569247949e6017ac81d82e",
+        lastName: "Doe",
+    }
+];
+
 const responseDataSuccess = {
     data:    userProfile,
     message: successMesasge,
@@ -49,6 +64,7 @@ const url = 'https://www.url.com';
 
 global.__ = {
     userProfile,
+    users,
     errorMessage,
     token,
     error,
